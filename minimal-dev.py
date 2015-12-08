@@ -1,6 +1,6 @@
 # coding=utf-8
 # This version is not supporting anymore.
-# destribute 2015.12.09 04:39 
+# destribute 2015.12.09 04:36 
 # 写在公开之前的话
 #
 # bilibili弹幕鸡-开发者简版 
@@ -29,6 +29,7 @@ roomid=10101
 # 我做了一些格式控制 看起来好看一点
 # 如果你想要修改代码，那么你可以进行修改,但请声明你发布的是修改版本
 
+#2015.12.09 04:55 更新了一波由于编码所导致的问题
 
 
 # livebilibili danmaku server
@@ -68,24 +69,24 @@ def msgOut(message):
             print u'【', packet['info'][3][1], packet['info'][3][0], u'】',
         print packet['info'][2][1], u'说：', packet['info'][1]
     elif packet['cmd'] == 'SEND_GIFT':
-        print '******', packet['data']['uname'], packet['data']['action'],
+        print u'******', packet['data']['uname'], packet['data']['action'],
         print packet['data']['giftName'], 'X', packet['data']['num'], u'******'
     elif packet['cmd'] == 'SYS_GIFT':
-        print '{:*^60}'.format(packet['msg'])
+        print u'{:*^60}'.format(packet['msg'])
     elif packet['cmd'] == 'SYS_MSG':
-        print '{:*^60}'.format(packet['msg'])
+        print u'{:*^60}'.format(packet['msg'])
     elif packet['cmd'] == 'ROOM_BLOCK_MSG':
-        print '{:*^60}'.format(packet['uname'] + u'被禁言')
+        print u'{:*^60}'.format(packet['uname'] + u'被禁言')
     elif packet['cmd'] == 'ROOM_ADMINS':
         pass
     elif packet['cmd'] == 'SEND_TOP':
-        print '{:*^60}'.format(u'礼物排行榜发生变化')
+        print u'{:*^60}'.format(u'礼物排行榜发生变化')
         for r in packet['data']['top_list']:
             print '{0:@^40}{1:<20}'.format(r['uname'], r['coin'])
     elif packet['cmd'] == 'BET_START':
         print u"******当前房间进行的竟猜：", packet['data']['data']['bet']['question'], u'******'
-        print "********A****{:*<40}".format(packet['data']['data']['bet']['a'])
-        print "********B****{:*<40}".format(packet['data']['data']['bet']['a'])
+        print u"********A****{:*<40}".format(packet['data']['data']['bet']['a'])
+        print u"********B****{:*<40}".format(packet['data']['data']['bet']['a'])
     elif packet['cmd'] == 'BET_RANKER':
         pass
     elif packet['cmd'] == 'BET_BETTOR':
@@ -96,7 +97,7 @@ def msgOut(message):
         pass
     elif packet['cmd'] == 'WELCOME':
         logging.info("A welcome message!")
-        print '**********欢迎{}进入直播间**********'.format(packet['data']['uname'])
+        print u'**********欢迎{}进入直播间**********'.format(packet['data']['uname'])
     elif packet['cmd'] == 'LIVE':
         pass
     elif packet['cmd'] == 'ROOM_AUDIT':
@@ -105,7 +106,7 @@ def msgOut(message):
         logging.warning(u'接收到未定义的数据包')
         logging.warning(message)
 
-print 'Connect to chatroom #', roomid
+print u'Connect to chatroom #', roomid
 danmakuClient = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 danmakuClient.connect((danmakuServer, danmakuServerPort))
 danmakuClient.send(establishHeader + liveRoomID + currentUserUID)
@@ -134,9 +135,8 @@ try :
             msglen = int(b2a_hex(danmakuClient.recv(2)), 16)
             msgvalue = danmakuClient.recv(msglen-4)
 except KeyboardInterrupt:
-    print 'KBD INTERRUPT'
+    print u'KBD INTERRUPT'
     raise
 finally :
     danmakuClient.close()
     heartBeatSendingProcess.terminate()
-    logging.info('Program Ends.', exc_info=1)
