@@ -69,7 +69,7 @@ def msgOut(message):
         print packet['info'][2][1], u'说：', packet['info'][1]
     elif packet['cmd'] == 'SEND_GIFT':
         print '******', packet['data']['uname'], packet['data']['action'],
-        print packet['data']['giftName'], 'X', packet['data']['num'], '******'
+        print packet['data']['giftName'], 'X', packet['data']['num'], u'******'
     elif packet['cmd'] == 'SYS_GIFT':
         print '{:*^60}'.format(packet['msg'])
     elif packet['cmd'] == 'SYS_MSG':
