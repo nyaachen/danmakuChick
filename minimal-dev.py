@@ -1,17 +1,18 @@
 # coding=utf-8
 # This version is not supporting anymore.
 # destribute 2015.12.09 04:36 
-# 写在公开之前的话
-#
-# bilibili弹幕鸡-开发者简版 
-#
-# 开发： 橙橙喵 
+# 真的会有人打开来看一眼吗  
+# 写在公开之前的话  
+# 
+# bilibili弹幕鸡-开发者简版  
+# 
+# 开发： 橙橙喵  
 # 叫做简版是因为和官方版本相比功能有限 
 # 运行平台为Python 2.7 
 # 不知道如何执行的话，请百度一下Python 
 # 要连接到你自己的直播间，记得改下面的参数 
-# 这一版本已经停止开发，请等待新版本
-# 虽然如此，但仍然正常工作，麻雀虽小，五脏俱全
+# 这一版本已经停止开发，请等待新版本  
+# 虽然如此，但仍然正常工作，麻雀虽小，五脏俱全  
 
 import socket
 import logging
@@ -26,10 +27,11 @@ roomid=10101
 # 只能是数字，包含字母会报错 
 
 # 下面的代码既包含功能组成部分，也包含格式控制部分 
-# 我做了一些格式控制 看起来好看一点
-# 如果你想要修改代码，那么你可以进行修改,但请声明你发布的是修改版本
+# 我做了一些格式控制 看起来好看一点  
+# 如果你想要修改代码，那么你可以进行修改,但请声明你发布的是修改版本  
 
-#2015.12.09 04:55 更新了一波由于编码所导致的问题
+#2015.12.09 04:55 更新了由于字符编码所导致的问题  
+#2015.12.10 00:02 更新了由于字符编码所导致的问题  
 
 
 # livebilibili danmaku server
@@ -82,7 +84,7 @@ def msgOut(message):
     elif packet['cmd'] == 'SEND_TOP':
         print u'{:*^60}'.format(u'礼物排行榜发生变化')
         for r in packet['data']['top_list']:
-            print '{0:@^40}{1:<20}'.format(r['uname'], r['coin'])
+            print u'{0:@^40}{1:<20}'.format(r['uname'], r['coin'])
     elif packet['cmd'] == 'BET_START':
         print u"******当前房间进行的竟猜：", packet['data']['data']['bet']['question'], u'******'
         print u"********A****{:*<40}".format(packet['data']['data']['bet']['a'])
