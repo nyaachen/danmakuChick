@@ -1,3 +1,5 @@
-# danmakuProj
-# This  is a bilibili live danmaku receiver
+# 弹幕鸡
+# bilibili弹幕鸡
+
 弹幕鸡的最小开发版本已经发布
+GUI正在开发，敬请期待
