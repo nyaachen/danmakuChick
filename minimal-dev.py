@@ -69,6 +69,18 @@ def msgOut(message):
             print u"爷",
         if not len(packet['info'][3]) == 0:
             print u'【', packet['info'][3][1], packet['info'][3][0], u'】',
+        try: 
+            t = packet['info'][5][0]
+            if t == 'child-man':
+                print u'圣诞小天使',
+            elif t == 'youth-man':
+                print u'圣诞青年',
+            elif t == 'middle-man':
+                print u'圣诞中年人',
+            elif t == 'old-man': # ?
+                print u'圣诞老人',
+        except:
+            pass
         print packet['info'][2][1], u'说：', packet['info'][1]
     elif packet['cmd'] == 'SEND_GIFT':
         print u'******', packet['data']['uname'], packet['data']['action'],
